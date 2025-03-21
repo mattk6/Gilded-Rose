@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
-import random
-from gilded_rose import Item, GildedRose
-random.seed(21)
 
-def rand(min_value, max_value):
-  """Returns a random integer within the specified range."""
-  return random.randint(min_value, max_value)
+from gilded_rose import Item, GildedRose
 
 
 class GildedRoseTest(unittest.TestCase):
