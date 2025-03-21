@@ -12,31 +12,38 @@ class GildedRose(object):
     def update_quality(self):
         for item in self.items:
             
-            # anything that's not Aged Brie logic and backstage passes logic
+            
+            # filter out Aged Brie logic and backstage passes
             if item.name not in (self.AGED_BRIE, self.BACKSTAGE_PASSES):
-                # decrement if above 0 and not Sulfuras
+                # filter out Sulfuras and quality > 0
                 if item.quality > 0 and item.name != self.SULFURAS:
+                        #this line will never run, all current objects are filtered out
                         item.quality -= 1
 
 
             # anything that is Aged Brie or backstage passes logic, still could be Sulfuras
             elif item.quality < 50:
+                    
                     item.quality += 1
                     
                     # Backstage passes logic
                     if item.name == self.BACKSTAGE_PASSES:
+
                         # if item.sell_in < 11 add 1 to quality
                         if item.sell_in < 11:
+                            if item.quality < 50:
                                 item.quality += 1
+
                         # if item.sell_in < 6 add 1 to quality again
                         if item.sell_in < 6:
-                                item.quality += 1
+                            if item.quality < 50:
+                                  item.quality += 1
             
             
             if item.name != self.SULFURAS:
                 item.sell_in -= 1
-            
-            
+
+
             if item.sell_in < 0:
                 if item.name != self.AGED_BRIE:
                     if item.name != self.BACKSTAGE_PASSES:
